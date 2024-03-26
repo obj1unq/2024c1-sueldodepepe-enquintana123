@@ -1,3 +1,58 @@
+object ernesto {
+	var companiero = roque
+	const faltas = 0
+	var bonoPresentismo = normal
+	
+	
+	method sueldo() {
+		return self.neto() + self.presentismo()
+	}
+	
+	method companiero(_companiero) {
+		companiero = _companiero
+	}
+	
+	method neto() {
+		return companiero.neto()
+	}
+	
+	method presentismo() {
+		return bonoPresentismo.valor(self)
+	}
+
+	method bonoPresentismo(_bonoPresentismo) {
+		bonoPresentismo = _bonoPresentismo
+	}
+	
+	method faltas() {
+		return faltas
+	}
+}
+
+object roque {
+	var bonoResultado = resultadoNulo
+	
+	method sueldo() {
+		return self.netoFijo() + self.resultado() + self.extra()
+	}
+	
+	method netoFijo() {
+		return 28000
+	}
+	
+	method resultado() {
+		return bonoResultado.valor(self)
+	}
+	
+	method extra() {
+		return 9000
+	}
+	
+	method bonoResultado(_bonoResultado) {
+		bonoResultado = _bonoResultado
+	}
+}
+
 object sofia {
 	
 	var categoria = cadete
@@ -153,7 +208,14 @@ object vendedor {
 }
 
 object medioTiempo {
-	method categoriaBase(categoria) {
-		return categoria.neto() / 2
+	var categoriaBase = cadete
+	method neto() {
+		return self.categoriaBase()
+	}
+	method categoriaBase() {
+		return categoriaBase.neto() / 2
+	} 
+	method categoriaBase(_categoriaBase) {
+		categoriaBase = _categoriaBase
 	}
 }

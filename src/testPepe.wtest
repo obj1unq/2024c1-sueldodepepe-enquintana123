@@ -1,5 +1,39 @@
 import pepe.*
 
+describe "Test completo" {
+	test "sueldo de Pepe es 11500, y el de Ernesto es 10100." {
+//	 La categoría base de _medio tiempo_ es _cadete_.
+	//- Pepe tiene categoría medio tiempo (o sea, es cadete y trabaja medio tiempo), tiene bono por resultados de porcentaje, 
+	//y bono por presentismo demagógico. Hacer que falte una vez.
+	//- Roque tiene bono por resultados monto fijo. 
+	//- Ernesto tiene como compañero a Pepe, y bono por presentismo de ajuste.
+	//	Verificar que el sueldo de Pepe es 11500, el de Roque es 37800, y el de Ernesto es 10100.
+		medioTiempo.categoriaBase(cadete)
+		pepe.categoria(medioTiempo)
+		pepe.bonoResultado(porcentual)
+		pepe.bonoPresentismo(demagogico)
+		pepe.faltas(1)
+		assert.equals(11500, pepe.sueldo())
+
+		roque.bonoResultado(montoFijo)
+		
+		ernesto.companiero(pepe)
+		ernesto.bonoPresentismo(ajuste)
+		
+		assert.equals(37800, roque.sueldo())
+		
+		
+		assert.equals(10100, ernesto.sueldo())
+	}
+}
+
+describe "Sueldo Roqeu" {
+	test "neto Roque con resultado Nulo" {
+		roque.bonoResultado(resultadoNulo)
+		assert.equals(37000, roque.sueldo())
+	}
+}
+
 describe "Sueldo Sofia" {
 	test "neto sofia siendo cadete" {
 		sofia.categoria(cadete)
@@ -21,10 +55,12 @@ describe "Neto vendedor" {
 
 describe "Medio tiempo" {
 	test "medio tiempo de gerente" {
-		assert.equals(7500, medioTiempo.categoriaBase(gerente))
+		medioTiempo.categoriaBase(gerente)
+		assert.equals(7500, medioTiempo.categoriaBase())
 	}
 	test "medio tiempo de cadete" {
-		assert.equals(10000, medioTiempo.categoriaBase(cadete))
+		medioTiempo.categoriaBase(cadete)
+		assert.equals(10000, medioTiempo.categoriaBase())
 	} 
 	
 }
